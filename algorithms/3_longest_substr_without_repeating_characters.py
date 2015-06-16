@@ -2,7 +2,21 @@ class Solution:
     # @param {string} s
     # @return {integer}
     def lengthOfLongestSubstring(self, s):
-        # my solution... 
+        # 2nd attemp # 112ms
+        uniq = {}
+        start, maxLen = 0, 0 
+        for i in range(len(s)):
+            if s[i] in uniq and start <= uniq[s[i]]:
+                maxLen = max(maxLen, i-uniq[s[i]])
+                start = uniq[s[i]] + 1
+            else:
+                maxLen = max(maxLen, i-start+1)
+                
+            uniq[s[i]] = i
+                
+        return maxLen
+        
+        # my 1st solution...  should use dict == 
         # 120ms
         s = list(s)
         unique, strlen = [], []
