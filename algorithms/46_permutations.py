@@ -14,8 +14,9 @@ class Solution:
             v = remain[0]
             for l in result:
                 for i in xrange(len(l)+1):
-                    new = l[:]
-                    new.insert(i, v)
+                    # new = l[:]
+                    # new.insert(i, v)
+                    new = l[:i]+[v]+l[i:]
                     res.append(new)
             return self.permutation(res, remain[1:])
                     
