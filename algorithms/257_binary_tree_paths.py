@@ -13,7 +13,7 @@ class Solution:
         if root is None:
             return []
         result, stack = [], [[root]]
-        while stack: # stack of paths
+        while stack:
             path = stack.pop()
             node = path.pop()
             path.append(str(node.val))
@@ -24,4 +24,3 @@ class Solution:
             if node.right:
                 stack.append(path+[node.right])
         return result
-        
