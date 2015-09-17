@@ -3,19 +3,8 @@ class Solution:
     # @param {string} t
     # @return {boolean}
     def isIsomorphic(self, s, t):
-        if s==t: 
-            return True
-        d = {}
-        for i in range(len(s)):
-            if s[i] not in d:
-                d[s[i]] = t[i]
-        for i in range(len(s)):
-            print i, t[i], d[s[i]]
-            if s[i] != d[s[i]]:
-                return False
-        else:
-            return True
-    
+        return len(set(zip(s, t)))==len(set(s))==len(set(t))
+
 print Solution().isIsomorphic("ab", "aa") # false
 print Solution().isIsomorphic('egg', 'add') # true
 print Solution().isIsomorphic('foo', 'bar') # false
