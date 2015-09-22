@@ -18,34 +18,26 @@ class Solution(object):
         """
         if not head:
             return None
-        beginOfUnsort = root = ListNode(0)
+        
+        root = ListNode(0)
         root.next = head
         
-        while beginOfUnsort and beginOfUnsort.next:
-            
-            # get the node out of the linked list
-            enfOfSort = beginOfUnsort # end of sorted list
-            current = beginOfUnsort.next 
-            
-            if current.val < enfOfSort.val:
-                # insert the node to the correct position
-                unsorted = beginOfUnsort.next.next # start of unsorted list
-                beginOfUnsort = beginOfUnsort.next
-                
-                # connect the sorted and unsorted part
-                enfOfSort.next = unsorted
-                # put node into the correct position
-                check = root
-                # check the node from root
-                while check.next and current.val >= check.next.val:
-                    check = check.next
-                # insert current between check and check.next
-                nextNode = check.next
-                check.next = current
-                current.next = nextNode
+        sortedEnd = head
+        unsortedHead = head.next
+        
+        while unsortedHead:
+            if unsortedHead.val < sortedEnd.val:
+                sortedEnd.next = unsortedHead.next
+                curr = root
+                while curr.next and curr.next.val < unsortedHead.val:
+                    curr = curr.next
+                currNext = curr.next
+                curr.next = unsortedHead
+                unsortedHead.next = currNext
+                unsortedHead = sortedEnd.next
             else:
-                # already sorted, enter next
-                beginOfUnsort = beginOfUnsort.next
+                sortedEnd = unsortedHead
+                unsortedHead = unsortedHead.next
             
         return root.next
     
