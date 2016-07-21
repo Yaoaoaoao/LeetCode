@@ -45,7 +45,7 @@ class WordDictionary(object):
             return node.isWord
         letter = word[idx]
         if letter == '.':
-            # Search every children, return True if any branch return True, else False. 
+            # Search every children, return True if any branch find a match word. 
             for key in node.children.keys(): 
                 if self.findWord(word, idx+1, node.children[key]):
                     return True
@@ -56,19 +56,14 @@ class WordDictionary(object):
             return False
 
 
-# wordDictionary = WordDictionary()
-# wordDictionary.addWord("bad")
-# wordDictionary.addWord("dad")
-# wordDictionary.addWord("mad")
-# print wordDictionary.search("pad")
-# print wordDictionary.search("bad")
-# print wordDictionary.search(".ad")
-# print wordDictionary.search("b..")
+w = WordDictionary()
+w.addWord("bad"), w.addWord("dad"), w.addWord("mad")
+print w.search("pad"), w.search("bad"), w.search(".ad"), w.search("b..")
+# False True True True
 
-# test = WordDictionary()
-# test.addWord("a")
-# test.addWord("ab")
-# print test.search("a"),test.search("a."), test.search("ab"), test.search(".a"), test.search(".b"), test.search("ab."), test.search("."), test.search("..")
+s = WordDictionary()
+s.addWord("a"), s.addWord("ab")
+print s.search("a"),s.search("a."), s.search("ab"), s.search(".a"), s.search(".b"), s.search("ab."), s.search("."), s.search("..")
 # [true,true,true,false,true,false,true,true]
 
 t = WordDictionary()
